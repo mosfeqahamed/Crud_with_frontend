@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+     <!-- Milligram CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Teacher</h1>
+        <div class="row">
+            <div class="column">
+                <label>Teacher Name</label>
+                <input id="teacherName" type="text">
+                <label>Course Name</label>
+                <input id="courseName" type="text">
+                <label>Course Duration</label>
+                <input id="courseDuration" type="text">
+                <label>Seats</label>
+                <input id="seat" type="text">
+                <button onclick="addteacher()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        async function addteacher(){
+            let teachername = document.getElementById('teacherName').value;
+            let coursename = document.getElementById('courseName').value;
+            let courseduration = document.getElementById('courseDuration').value;
+            let seatinfo = document.getElementById('seat').value;
+             
+            let obj = {
+                "teacher_name": teachername,
+                "course_name": coursename,
+                "course_duration": courseduration,
+                "seat": seatinfo
+            };
+            console.log(obj);
+            let URL = 'http://127.0.0.1:8000/teachers/create/';
+            let response = await axios.post(URL,obj);
+            window.location = "index.html"; 
+        }
+    </script>
+</body>
+</html>
